@@ -32,6 +32,14 @@
         <span>
           <input type="checkbox" value="vuejs" v-model="tecnologias" />VueJS
         </span>
+        <br /><br />
+
+        <label for="">Tipo de contrato</label>
+        <select v-model="tipoSelecionado">
+          <option v-for="tipo in tipos" :key="tipo.id" :value="tipo.nome">
+            {{ tipo.nome }}
+          </option>
+        </select>
       </form>
     </div>
     <hr />
@@ -44,6 +52,8 @@
       <ul>
         <li v-for="tech in tecnologias" :key="tech">{{ tech }}</li>
       </ul>
+      <br /><br />
+      <label for="">Tipo de contrato: {{ tipoSelecionado }}</label>
     </div>
   </div>
 </template>
@@ -60,6 +70,13 @@ export default {
       },
       opiniao: "",
       tecnologias: [],
+      tipos: [
+        { id: 1, nome: "CLT" },
+        { id: 2, nome: "Freelancer" },
+        { id: 3, nome: "PJ" },
+        { id: 4, nome: "Remoto" },
+      ],
+      tipoSelecionado: 1,
     };
   },
 };
