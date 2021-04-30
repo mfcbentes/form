@@ -40,6 +40,21 @@
             {{ tipo.nome }}
           </option>
         </select>
+        <br /><br />
+        <label for="">Qual o seu nível?</label>
+        <span>
+          <input type="radio" value="basico" v-model="nivel" />Básico
+        </span>
+        <span>
+          <input
+            type="radio"
+            value="intermediario"
+            v-model="nivel"
+          />Intermédiário
+        </span>
+        <span>
+          <input type="radio" value="avancado" v-model="nivel" />Avançado
+        </span>
       </form>
     </div>
     <hr />
@@ -53,7 +68,8 @@
         <li v-for="tech in tecnologias" :key="tech">{{ tech }}</li>
       </ul>
       <br /><br />
-      <label for="">Tipo de contrato: {{ tipoSelecionado }}</label>
+      <label for="">Tipo de contrato: {{ tipoSelecionado }}</label> <br /><br />
+      <label for="">Nível selecionado: {{ nivel }}</label>
     </div>
   </div>
 </template>
@@ -77,6 +93,7 @@ export default {
         { id: 4, nome: "Remoto" },
       ],
       tipoSelecionado: 1,
+      nivel: "basico",
     };
   },
 };
