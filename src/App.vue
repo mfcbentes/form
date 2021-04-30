@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Cadastro</h1>
     <div>
-      <form action="">
+      <form v-on:submit.prevent="enviar">
         <label for="">Nome </label>
         <input type="text" v-model="user.nome" /><br /><br />
 
@@ -36,7 +36,11 @@
 
         <label for="">Tipo de contrato</label>
         <select v-model="tipoSelecionado">
-          <option v-for="tipo in tipos" :key="tipo.id" :value="tipo.nome">
+          <option
+            v-for="tipo in tipos"
+            v-bind:key="tipo.id"
+            v-bind:value="tipo.nome"
+          >
             {{ tipo.nome }}
           </option>
         </select>
@@ -55,17 +59,19 @@
         <span>
           <input type="radio" value="avancado" v-model="nivel" />Avançado
         </span>
+        <br /><br />
+        <button type="submit">Enviar</button>
       </form>
     </div>
     <hr />
-    <div class="item">
+    <div class="item" v-show="resultado">
       <label for="">Nome: {{ user.nome }}</label> <br /><br />
       <label for="">E-mail: {{ user.email }}</label> <br /><br />
       <label for="">Qtde funcionários: {{ user.qtdeFunc }}</label> <br /><br />
       <label for="">Sua opinião: {{ opiniao }}</label> <br /><br />
       <label for="">Tecnologias:</label>
       <ul>
-        <li v-for="tech in tecnologias" :key="tech">{{ tech }}</li>
+        <li v-for="tech in tecnologias" v-bind:key="tech">{{ tech }}</li>
       </ul>
       <br /><br />
       <label for="">Tipo de contrato: {{ tipoSelecionado }}</label> <br /><br />
@@ -94,7 +100,13 @@ export default {
       ],
       tipoSelecionado: 1,
       nivel: "basico",
+      resultado: false,
     };
+  },
+  methods: {
+    enviar() {
+      this.resultado = true;
+    },
   },
 };
 </script>
